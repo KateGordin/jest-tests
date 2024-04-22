@@ -5,10 +5,16 @@ import { UtilsService } from "./utils.service";
 
 describe('UsersService', () => {
   let usersService: UsersService;
+  const utilsServiceMock = {
+    pluck: jest.fn(),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UsersService, UtilsService],
+      providers: [
+        UsersService, 
+        { provide: UtilsService, useValue: utilsServiceMock }
+      ],
     });
 
     usersService = TestBed.inject(UsersService);
@@ -34,6 +40,13 @@ describe('UsersService', () => {
       usersService.users = [{id: '3', name: 'foo'}];
       usersService.removeUser('3');
       expect(usersService.users).toEqual([]);
+    });
+  });
+
+  describe('getUserNames', () => {
+    it('should return user names', () => {
+      utilsServiceMock.pluck.mockReturnValue(['foo']);
+      expect(usersService.getUserNames()).toEqual(['foo']);
     });
   });
 });
