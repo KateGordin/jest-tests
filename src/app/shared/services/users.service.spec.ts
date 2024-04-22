@@ -1,13 +1,14 @@
 import { UserInterface } from "../types/user.interface";
 import { UsersService } from "./users.service";
 import { TestBed } from "@angular/core/testing";
+import { UtilsService } from "./utils.service";
 
 describe('UsersService', () => {
   let usersService: UsersService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UsersService],
+      providers: [UsersService, UtilsService],
     });
 
     usersService = TestBed.inject(UsersService);
