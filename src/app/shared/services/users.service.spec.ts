@@ -27,4 +27,12 @@ describe('UsersService', () => {
       expect(usersService.users).toEqual([{id: '3', name: 'foo'}]);
     });
   });
+
+  describe('removeUser', () => {
+    it('should remove a user', () => {
+      usersService.users = [{id: '3', name: 'foo'}];
+      usersService.removeUser('3');
+      expect(usersService.users).toEqual([]);
+    });
+  });
 });
