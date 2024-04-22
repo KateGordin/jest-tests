@@ -1,3 +1,4 @@
+import { UserInterface } from "../types/user.interface";
 import { UsersService } from "./users.service";
 import { TestBed } from "@angular/core/testing";
 
@@ -14,5 +15,16 @@ describe('UsersService', () => {
 
   it('creates a service', () => {
     expect(usersService).toBeTruthy();
+  });
+
+  describe('addUser', () => {
+    it('should add a user', () => {
+      const user: UserInterface = { 
+        id: '3', 
+        name: 'foo' 
+      }
+      usersService.addUser(user);
+      expect(usersService.users).toEqual([{id: '3', name: 'foo'}]);
+    });
   });
 });
