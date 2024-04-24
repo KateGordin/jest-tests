@@ -1,4 +1,4 @@
-import { range, pluck } from './utils';
+import { pluck, range } from './utils';
 
 describe('utils', () => {
   describe('range', () => {
@@ -13,9 +13,9 @@ describe('utils', () => {
   describe('pluck', () => {
     it('returns correct result', () => {
       const data = [
-        { id: '1', name: 'foo' }, 
-        { id: '2', name: 'bar' }, 
-        { id: '3', name: 'baz' }, 
+        { id: '1', name: 'foo' },
+        { id: '2', name: 'bar' },
+        { id: '3', name: 'baz' },
       ];
       expect(pluck(data, 'id')).toEqual(['1', '2', '3']);
     });

@@ -1,17 +1,19 @@
-import { Injectable } from "@angular/core";
-import { UserInterface } from "../types/user.interface";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { UserInteface } from '../types/user.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UsersService {
-  users$ = new BehaviorSubject<UserInterface[]>([]);
+  users$ = new BehaviorSubject<UserInteface[]>([]);
 
-  addUser(user: UserInterface): void {
+  addUser(user: UserInteface): void {
     this.users$.next([...this.users$.getValue(), user]);
   }
 
   removeUser(userId: string): void {
-    const updateUsers = this.users$.getValue().filter((user) => userId !== user.id);
-    this.users$.next(updateUsers);
+    const updatedUsers = this.users$
+      .getValue()
+      .filter((user) => userId !== user.id);
+    this.users$.next(updatedUsers);
   }
 }
